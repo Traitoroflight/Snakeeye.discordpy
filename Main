@@ -1,0 +1,55 @@
+# for the emojis part you need to invite your bot to your server with administor perm and make emojis in that server of image of all faces of the dice
+
+import discord
+from discord.ext import commands
+import random
+import asyncio
+
+Prefix = "Put the prefix you want here"
+Token = "Put Your bot Token here"
+
+client = commands.Bot(command_prefix=Prefix,case_insensitive=True)
+
+@client.command(alaises=["se"], pass_context=True)
+async def Snakeeye(ctx, *, arg):
+    dice1 = e = discord.utils.get(client.emojis, name='The emoji name of the dice rolling 1')
+    dice2 = discord.utils.get(client.emojis, name='The emoji name of the dice rolling 2')
+    dice3 = discord.utils.get(client.emojis, name='The emoji name of the dice rolling 3')
+    dice4 = discord.utils.get(client.emojis, name='The emoji name of the dice rolling 4')
+    dice5 = discord.utils.get(client.emojis, name='The emoji name of the dice rolling 5')
+    dice6 = discord.utils.get(client.emojis, name='The emoji name of the dice rolling 6')
+    Dice = [dice1, dice2, dice3, dice4, dice5, dice6]
+    print(dice1)
+    f1 = random.choice(Dice)
+    f1_2 = random.choice(Dice)
+    f2 = random.choice(Dice)
+    f2_2 = random.choice(Dice)
+    f3 = random.choice(Dice)
+    f3_2 = random.choice(Dice)
+    first_dice_chosen = random.choice(Dice)
+    second_dice_chosen = random.choice(Dice)
+    embed1 = discord.Embed(title="You rolled:", description=f"{f1}{f1_2}")
+    embed2 = discord.Embed(title="You rolled:", description=f"{f2}{f2_2}")
+    embed3 = discord.Embed(title="You rolled:", description=f"{f3}{f3_2}")
+    if first_dice_chosen and second_dice_chosen == e:
+        x = int(arg)*2
+        embed4 = discord.Embed(title= "You rolled:", description=f"{first_dice_chosen}{second_dice_chosen}")
+        embed4.add_field(name="You Won!", value=(f"Won : {x} 2x payout"), inline=False)
+    elif first_dice_chosen == e and second_dice_chosen != e:
+        x = int(arg) * 1.2
+        embed4 = discord.Embed(title= "You rolled:",description=f"{first_dice_chosen}{second_dice_chosen}")
+        embed4.add_field(name="You Won!", value=(f"Won : {x} 1.2x payout"), inline=False)
+    elif first_dice_chosen != e and second_dice_chosen == e:
+        x = int(arg) * 1.2
+        embed4 = discord.Embed(title="You rolled:", description=f"{first_dice_chosen}{second_dice_chosen}")
+        embed4.add_field(name="You Won!", value=(f"Won : {x} 1.2x payout"), inline=False)
+    elif first_dice_chosen and second_dice_chosen != e:
+        embed4 = discord.Embed(title= "You rolled:",description=f"{first_dice_chosen}{second_dice_chosen}")
+        embed4.add_field(name="L bro", value=(f"Lost : {arg} 0x payout XDD"), inline=False)
+    message = await ctx.send(embed=embed1)
+    await asyncio.sleep(0.4)
+    await message.edit(embed=embed2)
+    await asyncio.sleep(0.4)
+    await message.edit(embed=embed3)
+    await asyncio.sleep(0.4)
+    await message.edit(embed=embed4)
