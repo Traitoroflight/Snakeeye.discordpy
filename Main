@@ -19,7 +19,6 @@ async def Snakeeye(ctx, *, arg):
     dice5 = discord.utils.get(client.emojis, name='The emoji name of the dice rolling 5')
     dice6 = discord.utils.get(client.emojis, name='The emoji name of the dice rolling 6')
     Dice = [dice1, dice2, dice3, dice4, dice5, dice6]
-    print(dice1)
     f1 = random.choice(Dice)
     f1_2 = random.choice(Dice)
     f2 = random.choice(Dice)
